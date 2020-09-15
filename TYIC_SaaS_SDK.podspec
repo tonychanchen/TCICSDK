@@ -8,7 +8,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                       腾讯云互动教育极简单接入SaaS方案
                    DESC
-  s.homepage     = "https://github.com/JamesChenGithub/tyic_saas_sdk"
+  s.homepage     = "https://github.com/JamesChenGithub/TYIC_SaaS_SDK"
   s.license      = "MIT"
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = "alexichen"
@@ -21,7 +21,7 @@ Pod::Spec.new do |s|
   }
 
 
-  s.source       = { :git => "https://github.com/JamesChenGithub/tyic_saas_sdk.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/JamesChenGithub/TYIC_SaaS_SDK.git", :tag => "#{s.version}" }
   
   # s.resource = 'tyicimage.bundle'
   # the framework upload to Cocoa Pods
@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation', 'Accelerate'
   s.dependency 'Masonry'
   s.dependency 'YYModel'
+  s.dependency 'TIWLogger_iOS'
   s.dependency 'TXLiteAVSDK_TRTC', '7.6.9355'
 
 end
