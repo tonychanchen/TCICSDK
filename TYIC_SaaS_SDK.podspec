@@ -24,10 +24,11 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/JamesChenGithub/tyic_saas_sdk.git", :tag => "#{s.version}" }
   # s.resource = 'tyicimage.bundle'
   # the framework upload to Cocoa Pods
-  s.vendored_frameworks = 'TYICSDK.framework'
+  s.vendored_frameworks = 'TYIC_SaaS_SDK.framework'
   s.frameworks = 'Foundation', 'Accelerate'
   s.dependency 'Masonry'
   s.dependency 'YYModel'
-  s.dependency 'TXLiteAVSDK_TRTC', '7.2.8961'
+  s.dependency 'TIWLogger_iOS'
+  s.dependency 'TXLiteAVSDK_TRTC', '7.6.9355'
 
 end
