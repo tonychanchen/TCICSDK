@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TYICSDKDebugVersion : 3.0.36
-// TYICSDKGitCommitID : 3501f5f8c32870928bfd9fa4ddfacf38d50503e4
+// TYICSDKDebugVersion : 3.0.37
+// TYICSDKGitCommitID : 768e1c5eda37f2080943a744fd4d5f11d91b41f2
 
 #import <UIKit/UIKit.h>
 #import "TYICClassRoomConfig.h"
@@ -28,7 +28,7 @@ extern NSString *_Nonnull const TYICStartExitClassRoomNotify;
 // TYICClassRoomViewController实例释放，完全退出通知
 extern NSString *_Nonnull const TYICExitClassRoomCompleteNotify;
 
-@protocol TYICUICustomMgr;
+//@protocol TYICUICustomMgr;
 @interface TYICClassRoomViewController : UIViewController
 
 // 使用+classRoomWithConfig:uiOption:webOption 进行构建
@@ -45,11 +45,11 @@ extern NSString *_Nonnull const TYICExitClassRoomCompleteNotify;
 
 - (instancetype _Nonnull)initWithURL:(NSURL * _Nonnull)url uiOption:(NSDictionary *_Nullable)uiOption webOption:(NSDictionary *_Nullable)webOption;
 
-/**
- * 注册UI自定义处理逻辑回调, 设置后trtcAction即有效
- * @param customUI 定制的UI处理逻辑, 内部会强引用customUI，外部不想监听时，即可谈话
- */
-- (void)registerCustomUIHandler:(id<TYICUICustomMgr>)customUI;
+///**
+// * 注册UI自定义处理逻辑回调, 设置后trtcAction即有效
+// * @param customUI 定制的UI处理逻辑, 内部会强引用customUI，外部不想监听时，即可谈话
+// */
+//- (void)registerCustomUIHandler:(id<TYICUICustomMgr>)customUI;
 
 @end
 
