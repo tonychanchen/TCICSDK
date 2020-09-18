@@ -75,6 +75,23 @@
 
 @end
 
+
+@protocol TYICCustomMsgSender<NSObject>
+
+/**
+ * 方便业务侧记录sender信息，记录时请不要强引用
+ */
+- (NSString *_Nullable)senderIdentifier;
+
+/**
+ * 发送自定义消息
+ * @param customMsg 要发送的消息，具体与
+ */
+- (BOOL)sendCustomMsg:(NSString *_Nullable)customMsg;
+
+@end
+
+
 @protocol TYICUICustomMgr<TYICTRTCEventListener, TYICTRTCUIRenderSource>
 
 
@@ -114,16 +131,16 @@
 */
 - (void)onShouldAutoRotateAndLayout:(BOOL)landscape;
 
-@end
-
-
-@protocol TYICCustomChannel <NSObject>
+@optional
 
 /**
-* 自定义消息通道
-* @param scripMsg 自定义JavaScript消息
-* @param webId 底层webview对应的webId
-*/
-- (void)onRecvCustomScriptMessage:(WKScriptMessage *_Nonnull)scripMsg fromWKWeb:(NSString *_Nonnull)webId;
+ * 收到自定义消息；
+ * @param customMsg h5侧发送的自定义Json消息
+ * @param recvAndSender 底层收到该消息者，业务侧可通过该对像，回复消息
+ */
+- (void)onRecvCustomJsMsg:(NSDictionary *_Nullable)customMsg fromSender:(id<TYICCustomMsgSender> _Nonnull)recvAndSender;
 
 @end
+
+
+
