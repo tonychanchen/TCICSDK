@@ -1,4 +1,4 @@
-# TYIC_SaaS_SDK 使用说明
+# TYIC\_SaaS\_SDK 使用说明
 
 ## 功能介绍
 
@@ -32,7 +32,7 @@
 
 1. 在使用处引用 `#import  <TYIC_SaaS_SDK/TYICClassRoomViewController.h>` 即可
 
-2. `TYICClassRoomConfig`说明
+2. `TYICClassRoomConfig`说明 （**待定是否对外暴露**）
 
 	| 字段 | 类型 | 描述 | 必传 | 
 	| ---- | ---- | ---- | ---- |
@@ -53,7 +53,8 @@
 	| TYICWebViewLoadCompleteNotify | 进入课堂（TRTC enterRoom）完成通知 |
 	| TYICStartExitClassRoomNotify | 开始退出课堂（TRTC exitRoom）通知 |
 	| TYICExitClassRoomCompleteNotify | TYICClassRoomViewController实例释放，完全退出通知 |
-	|  + (instancetype)classRoomWithConfig:(TYICClassRoomConfig *)roomConfig <br>uiOption:(NSDictionary *)uiOption <br>webOption:(NSDictionary *)webOption | 创建上课页面viewcontroller方法，roomConfig必传，如果roomConfig参数不合法（主要是是空），会返回空, uiOption/webOption 非必传填nil即可，主要方便后续扩展 |
+	|  + (instancetype)classRoomWithConfig:(TYICClassRoomConfig *)roomConfig <br>uiOption:(NSDictionary *)uiOption <br>webOption:(NSDictionary *)webOption | 主线程调用；创建上课页面viewcontroller方法，roomConfig必传，如果roomConfig参数不合法（主要是是空），会返回空, uiOption/webOption 非必传填nil即可，主要方便后续扩展 |
+	| - (instancetype _Nonnull)initWithURL:(NSURL * _Nonnull)url uiOption:(NSDictionary *_Nullable)uiOption webOption:(NSDictionary *_Nullable)webOption;| 主线程调用；使用url方式使用, url必传， uiOption/webOption 非必传填nil即可，主要方便后续扩展 |
 
 	示例代码如下:
 	
