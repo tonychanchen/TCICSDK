@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TYICSDKDebugVersion : 1.0.0.50
-// TYICSDKGitCommitID : 453cbf2680ddef7a4a237be3f0256c71598143b9
+// TYICSDKDebugVersion : 1.0.0.51
+// TYICSDKGitCommitID : 1c84a6809640b6fa32d1242ef335c12e3276cb52
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -14,7 +14,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *_Nonnull const TYIC_SDK_Version;
-
+extern NSString *_Nonnull const TYIC_SDK_CommitID;
 // 开始加载课堂通知
 extern NSString *_Nonnull const TYICWebViewStartLoadNotify;
 // 加载课堂失败通知
@@ -28,12 +28,13 @@ extern NSString *_Nonnull const TYICStartExitClassRoomNotify;
 // TCICClassController实例释放，完全退出通知
 extern NSString *_Nonnull const TYICExitClassRoomCompleteNotify;
 
-//@protocol TYICUICustomMgr;
+//@protocol TCICUICustomMgr;
 @interface TCICClassController : UIViewController
 
 // 使用+classRoomWithConfig:uiOption:webOption 进行构建
 + (instancetype)new  __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
 - (instancetype)init __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
+
 
 /**
 * 使用H5+Native方式使用，请在主线程中调用
@@ -42,8 +43,7 @@ extern NSString *_Nonnull const TYICExitClassRoomCompleteNotify;
 * @param webOption : webview相关的配置
 * 如果参数不合法，会返回nil，外部注意处理
 */
-+ (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig uiOption:(NSDictionary *_Nullable)uiOption webOption:(NSDictionary *_Nullable)webOption;
-
++ (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig;
 
 
 @end

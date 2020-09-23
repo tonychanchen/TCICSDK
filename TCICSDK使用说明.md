@@ -45,8 +45,8 @@
 	| TYICWebViewLoadCompleteNotify | 进入课堂（TRTC enterRoom）完成通知 |
 	| TYICStartExitClassRoomNotify | 开始退出课堂（TRTC exitRoom）通知 |
 	| TYICExitClassRoomCompleteNotify | TCICClassController实例释放，完全退出通知 |
-	|  + (instancetype)classRoomWithConfig:(TCICClassConfig *)roomConfig <br>uiOption:(NSDictionary *)uiOption <br>webOption:(NSDictionary *)webOption | 主线程调用；创建上课页面viewcontroller方法，roomConfig必传，如果roomConfig参数不合法（主要是是空），会返回空, uiOption/webOption 非必传填nil即可，主要方便后续扩展，主要用于腾云课堂相关接口 |
-	| - (instancetype _Nonnull)initWithURL:(NSURL * _Nonnull)url uiOption:(NSDictionary *_Nullable)uiOption webOption:(NSDictionary *_Nullable)webOption;| 主线程调用；使用url方式使用, url必传， uiOption/webOption 非必传填nil即可，主要方便后续扩展，主要供外部使用 |
+	|  + (instancetype)classRoomWithConfig:(TCICClassConfig *)roomConfig | 主线程调用；创建上课页面viewcontroller方法，roomConfig必传，如果roomConfig参数不合法（主要是是空），会返回空 |
+	
 
 	示例代码如下:
 	
@@ -58,7 +58,7 @@
 	roomConfig.classId = 123454;
 	roomConfig.schoolId = xxxxx;
 	            
-	TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig uiOption:nil webOption:nil];
+	TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 	if (vc) {
 		[(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
 	} else {
