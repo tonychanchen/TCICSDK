@@ -15,6 +15,8 @@
 	pod 'Masonry'
 	pod 'YYModel'
 	pod 'TXLiteAVSDK_TRTC'
+     pod 'TIWLogger_iOS'
+     pod 'ZipArchive'
 	```
 
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
