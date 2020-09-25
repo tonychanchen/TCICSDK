@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TYICSDKDebugVersion : 1.0.0.56
-// TYICSDKGitCommitID : 38896803a3344df3860dc797380b97baa6a96d77
+// TYICSDKDebugVersion : 1.0.0.59
+// TYICSDKGitCommitID : 075cddc46205f8398c52b5c099aeacbd58ecb30d
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -39,8 +39,6 @@ extern NSString *_Nonnull const TYICExitClassRoomCompleteNotify;
 /**
 * 使用H5+Native方式使用，请在主线程中调用
 * @param roomConfig : 打开教室所需要的配置
-* @param uiOption : 如果要进教室，配置UI相关的参数
-* @param webOption : webview相关的配置
 * 如果参数不合法，会返回nil，外部注意处理
 */
 + (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig;
