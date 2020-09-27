@@ -35,7 +35,13 @@
 	| userSig | string | 可参考 [云 API - 换取票据](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=4-%e6%8d%a2%e5%8f%96%e7%a5%a8%e6%8d%ae)，返回的userSig信息 | 必传 |
 	| schoolId | string | 学校ID，可参考 [云 API - 创建机构](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=1%e5%88%9b%e5%bb%ba%e6%9c%ba%e6%9e%84) | 必传 |
 	| classId | uint32 | 课堂编号，可参考 [云 API- 创建课堂](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=12-%e5%88%9b%e5%bb%ba%e8%af%be%e5%a0%82)| 必传 | 
-    | classHtmlUrl | string | 课堂页地址，填写发布时的课堂地址 | 必传 | 
+	
+	如何更新课堂地址：
+	1. 使用KVC修改 `htmlUrl` 值 ，如  ` [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];`
+	2. 使用KVC修改`htmlUrl`时，`value` 必须满足以下条件：
+		*  `Value`必须是 	`NSString`，传入其他类型或`nil`，不会生效;
+		*  `Value`必须能正确构造出`NSURL`对象, 即 `[NSURL URLWithString:value]` 或 `[NSURL fileURLWithPath:value]`  返回不为空;
+		*  若传入与SDK逻辑未调试的地址，比如传入的地址为 `https://v.qq.com/`，虽然能满足上两项条件，使用SDK也会正常打开，但SDK内部仍然会出示提示框，要求退出;
 
 2. `TCICClassController `说明
 
@@ -60,8 +66,10 @@
 	roomConfig.token = "test_token";
 	roomConfig.classId = 123454;
 	roomConfig.schoolId = xxxxx;
-     roomConfig.classHtmlUrl = "http://xxx.xxx.xxx/yyy/index.html";
-	            
+	
+	// 如何更新测试地址：详见注意事项2
+	// 	[roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];
+	           
 	TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 	if (vc) {
 		[(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
@@ -69,6 +77,8 @@
 		NSLog(@"参数有误");
 	}    
 	```
+	
+	
     
 
 
@@ -76,6 +86,10 @@
 	1. 如果的你App（iPad）配置类似下面: 1. 需要支持iPad ,  2. 需要支持所有方向；**那么请勾选上 `Requires full screen` 选项 (该选项对现有App不影响)**，否则 ` TCICClassController ` 无法正常旋转至横屏
 	
 	![](https://main.qcloudimg.com/raw/26926026e4a4ed5d565ede21258a47ab.png)
+	
+
+    		
+    		
 	
 	
 
