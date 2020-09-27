@@ -35,6 +35,7 @@
 	| userSig | string | 可参考 [云 API - 换取票据](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=4-%e6%8d%a2%e5%8f%96%e7%a5%a8%e6%8d%ae)，返回的userSig信息 | 必传 |
 	| schoolId | string | 学校ID，可参考 [云 API - 创建机构](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=1%e5%88%9b%e5%bb%ba%e6%9c%ba%e6%9e%84) | 必传 |
 	| classId | uint32 | 课堂编号，可参考 [云 API- 创建课堂](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=12-%e5%88%9b%e5%bb%ba%e8%af%be%e5%a0%82)| 必传 | 
+    | classHtmlUrl | string | 课堂页地址，填写发布时的课堂地址 | 必传 | 
 
 2. `TCICClassController `说明
 
@@ -59,6 +60,7 @@
 	roomConfig.token = "test_token";
 	roomConfig.classId = 123454;
 	roomConfig.schoolId = xxxxx;
+     roomConfig.classHtmlUrl = "http://xxx.xxx.xxx/yyy/index.html";
 	            
 	TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 	if (vc) {
