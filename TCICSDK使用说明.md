@@ -14,10 +14,21 @@
 	```
 	pod 'Masonry'
 	pod 'YYModel'
+     pod 'Bugly'
 	pod 'TXLiteAVSDK_TRTC'
      pod 'TIWLogger_iOS'
-     pod 'ZipArchive'
 	```
+    
+    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`，在工程`Poddile` 文件中添加依赖     `pod 'TCICSDK_Dyn'`, `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装。
+
+    ```
+    pod 'Masonry'
+    pod 'YYModel'
+    pod 'Bugly'
+    pod 'TXLiteAVSDK_TRTC'
+    pod 'TIWLogger_iOS'
+    
+    ```
 
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
 
@@ -48,12 +59,6 @@
 	| API | 说明 | 
 	| --- | ---- | 
 	| TCIC_SDK_Version | SDK版本号 | 
-	| TCICWebViewStartLoadNotify | 开始加载课堂通知 |
-	| TCICWebViewLoadFailedNotify | 加载课堂失败通知 |
-	| TCICWebViewLoadCompleteNotify | 加载课堂H5完成通知 |
-	| TCICWebViewLoadCompleteNotify | 进入课堂（TRTC enterRoom）完成通知 |
-	| TCICStartExitClassRoomNotify | 开始退出课堂（TRTC exitRoom）通知 |
-	| TCICExitClassRoomCompleteNotify | TCICClassController实例释放，完全退出通知 |
 	|  + (instancetype)classRoomWithConfig:(TCICClassConfig *)roomConfig | 主线程调用；创建上课页面viewcontroller方法，roomConfig必传，如果roomConfig参数不合法（主要是是空），会返回空 |
 	
 
