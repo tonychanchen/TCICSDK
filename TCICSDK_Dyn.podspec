@@ -26,10 +26,12 @@ Pod::Spec.new do |s|
   s.resource = 'tcicimage.bundle'
   s.vendored_frameworks = 'TCICSDK_Dyn.framework'
   s.frameworks = 'Foundation', 'Accelerate'
-  s.dependency 'Masonry'
-  s.dependency 'YYModel'
-  s.dependency 'Bugly'
-  s.dependency 'TIWLogger_iOS', '1.0.1.12'
-  s.dependency 'TXLiteAVSDK_TRTC', '7.7.9458'
+
+  # 动态库不用依赖下列库
+  # s.dependency 'Masonry'
+  # s.dependency 'YYModel'
+  # s.dependency 'Bugly'
+  # s.dependency 'TIWLogger_iOS', '1.0.1.12'
+  # s.dependency 'TXLiteAVSDK_TRTC', '7.7.9458'
 
 end
