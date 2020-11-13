@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
 
   # 动态库不用依赖下列库
   # s.resource = 'tcicimage.bundle'
-  # s.dependency 'Masonry'
-  # s.dependency 'YYModel'
+  s.dependency 'Masonry'
+  s.dependency 'YYModel'
   # s.dependency 'Bugly'
   # s.dependency 'TIWLogger_iOS', '1.0.1.12'
   # s.dependency 'TXLiteAVSDK_TRTC', '7.7.9458'
