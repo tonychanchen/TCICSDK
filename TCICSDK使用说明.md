@@ -27,7 +27,6 @@
     pod 'Bugly'
     pod 'TXLiteAVSDK_TRTC'
     pod 'TIWLogger_iOS'
-    
     ```
 
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
@@ -88,7 +87,11 @@
 
 
 	**注意事项**：
-	1. 如果的你App（iPad）配置类似下面: 1. 需要支持iPad ,  2. 需要支持所有方向；**那么请勾选上 `Requires full screen` 选项 (该选项对现有App不影响)**，否则 ` TCICClassController ` 无法正常旋转至横屏
+	1. 如果的你App（iPad）配置类似下面：
+		* 需要支持iPad ;
+		* 需要支持所有方向；
+		
+		**那么请勾选上 `Requires full screen` 选项 (该选项对现有App不影响)**，否则 ` TCICClassController ` 无法正常旋转至横屏
 	
 	![](https://main.qcloudimg.com/raw/26926026e4a4ed5d565ede21258a47ab.png)
 	
