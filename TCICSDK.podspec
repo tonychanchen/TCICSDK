@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
   s.source       = { :git => "https://github.com/JamesChenGithub/TCICSDK.git", :tag => "#{s.version}" }
   
-  s.resource = 'tcicimage.bundle'
+  # s.resource = 'tcicimage.bundle'
   s.vendored_frameworks = 'TCICSDK.framework'
   s.frameworks = 'Foundation', 'Accelerate'
   s.dependency 'Masonry'
