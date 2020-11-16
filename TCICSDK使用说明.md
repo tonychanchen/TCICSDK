@@ -14,19 +14,15 @@
 	```
 	pod 'Masonry'
 	pod 'YYModel'
-     pod 'Bugly'
 	pod 'TXLiteAVSDK_TRTC'
      pod 'TIWLogger_iOS'
 	```
     
-    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`，在工程`Poddile` 文件中添加依赖     `pod 'TCICSDK_Dyn'`, `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装。
+    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`，在工程`Poddile` 文件中添加依赖     `pod 'TCICSDK_Dyn'`, `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
 
     ```
     pod 'Masonry'
     pod 'YYModel'
-    pod 'Bugly'
-    pod 'TXLiteAVSDK_TRTC'
-    pod 'TIWLogger_iOS'
     ```
 
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
@@ -94,6 +90,8 @@
 		**那么请勾选上 `Requires full screen` 选项 (该选项对现有App不影响)**，否则 ` TCICClassController ` 无法正常旋转至横屏
 	
 	![](https://main.qcloudimg.com/raw/26926026e4a4ed5d565ede21258a47ab.png)
+    
+    2. SDK使用bugly共享式收集crash，业务方自行集成bugly即可;
 	
 
     		
