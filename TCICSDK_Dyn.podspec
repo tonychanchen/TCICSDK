@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation', 'Accelerate'
 
   # 动态库不用依赖下列库
-  # s.resource = 'tcicimage.bundle'
+  s.resource = 'tcicimage.bundle'
   s.dependency 'Masonry'
   s.dependency 'YYModel'
   # s.dependency 'Bugly'
