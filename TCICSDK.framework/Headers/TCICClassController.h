@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.0.206
-// TCICSDKGitCommitID : 3f10fcf170c51e97f8449f0a82b042d1155b2cbc
+// TCICSDKDebugVersion : 1.0.0.207
+// TCICSDKGitCommitID : b1f48c3450f2a3292c50bc9c50184c4cc5187715
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
