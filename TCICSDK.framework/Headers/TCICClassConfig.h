@@ -14,7 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, nonnull) NSString *userId;              // 用户ID,必传
 @property (nonatomic, copy, nonnull) NSString *token;               // token,必传
-@property (nonatomic, copy, nonnull) NSString *userSig;             // userSig,必传
 @property (nonatomic, assign) UInt32 schoolId;                      // 学校Id,必传
 @property (nonatomic, assign) UInt32 classId;                       // 课程ID,必传
 

@@ -16,6 +16,7 @@
 	pod 'YYModel'
 	pod 'TXLiteAVSDK_TRTC'
      pod 'TIWLogger_iOS'
+     pof 'TIWCache_iOS'
 	```
     
     如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`，在工程`Poddile` 文件中添加依赖     `pod 'TCICSDK_Dyn'`, `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
@@ -89,7 +90,7 @@
 	
 	![](https://main.qcloudimg.com/raw/26926026e4a4ed5d565ede21258a47ab.png)
     
-    2. SDK使用bugly共享式收集crash，业务方自行集成bugly即可;
+    2. SDK使用bugly共享式收集crash，业务方自行集成bugly即可将SDK相关的crash同步给腾讯侧进行修复；
 	
 
     		
