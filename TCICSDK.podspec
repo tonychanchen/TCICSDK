@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
   s.dependency 'YYModel'
   s.dependency 'Bugly'
   s.dependency 'TIWLogger_iOS', '1.0.1.19'
-  s.dependency 'TIWCache_iOS', '1.0.0.12'
+  s.dependency 'TIWCache_iOS', '1.0.0.14'
   s.dependency 'TXLiteAVSDK_TRTC', '7.7.9458'
 
 end
