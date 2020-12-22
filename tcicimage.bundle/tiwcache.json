@@ -1,0 +1,41 @@
+{
+    "resources": [
+        {
+            "version": "1.0.0.3",
+            "sdkAppId": "0",
+            "schoolId": "0",
+            "url": "https://cache.qcloudtiw.com/cache/apaas/tiwresource_1.0.0.3.zip",
+            "files": {
+                "https://res.qcloudtiw.com/board/third/cos/5.1.0/cos.min.js": "/resource/board/third/cos/5.1.0/cos.min.js",
+                "https://res.qcloudtiw.com/board/third/axios/axios.min.js": "/resource/board/third/axios/axios.min.js",
+                "https://res.qcloudtiw.com/board/2.5.3/TEduBoard.min.js": "/resource/board/2.5.3/TEduBoard.min.js",
+                "https://res.qcloudtiw.com/board/third/videojs/1.0.0/video.min.js": "/resource/board/third/videojs/1.0.0/video.min.js",
+                "https://res.qcloudtiw.com/board/third/videojs/1.0.0/video-js.min.css": "/resource/board/third/videojs/1.0.0/video-js.min.css",
+                "https://res.qcloudtiw.com/board/third/cssreset/cssreset.css": "/resource/board/third/cssreset/cssreset.css",
+                "https://res.qcloudtiw.com/board/fonts/simhei-Regular.ttf": "/resource/board/fonts/simhei-Regular.ttf",
+                "https://res.qcloudtiw.com/tcic/sdk/tcic-sdk.min.js": "/resource/tcic/sdk/tcic-sdk.min.js",
+                "https://class.qcloudtrtc.com/index.html": "/resource/apaas/index.html",
+                "https://class.qcloudtrtc.com/main-bundle.js": "/resource/apaas/main-bundle.js",
+                "https://class.qcloudtrtc.com/main.css": "/resource/apaas/main.css",
+                "https://class.qcloudtrtc.com/webview.html": "/resource/apaas/webview.html",
+                "https://class.qcloudtrtc.com/webview-bundle.js": "/resource/apaas/webview-bundle.js",
+                "https://class.qcloudtrtc.com/webview.css": "/resource/apaas/webview.css"
+            },
+            "regexes": {
+                "https:\\/\\/res\\.qcloudtiw\\.com\\/board\\/third\\/(.+)": "/resource/board/third/$1"
+            },
+            "media": {
+                "fragSize": 524288,
+                "supportFomats": "mp4|rmvb|avi|mov|flv|wmv|m3u8|mpeg|mp3|wav|pcm|aac|ogg"
+            },
+            "expired": 200,
+            "domains": {
+                "www.xxx.com": [
+                    "www.aaa.com",
+                    "www.bbb.com"
+                ]
+            }
+        }
+    ],
+    "interval": 1800
+}
