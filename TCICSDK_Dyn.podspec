@@ -24,7 +24,7 @@ Pod::Spec.new do |s|
   s.source       = { :git => "https://github.com/JamesChenGithub/TCICSDK.git", :tag => "#{s.version}" }
   
   
-  s.vendored_frameworks = 'TCICSDK_Dyn.framework'
+  s.vendored_frameworks = 'TCICSDK.framework'
   s.frameworks = 'Foundation', 'Accelerate'
 
   # 动态库不用依赖下列库
