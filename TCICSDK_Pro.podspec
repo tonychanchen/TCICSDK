@@ -2,7 +2,7 @@
 Pod::Spec.new do |s|
 
 
-  s.name         = "TCICSDK"
+  s.name         = "TCICSDK_Pro"
   s.version      = "1.0.1.246"
   s.summary      = "TCICSDK"
   s.description  = <<-DESC
