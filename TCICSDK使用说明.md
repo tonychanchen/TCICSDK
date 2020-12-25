@@ -19,11 +19,21 @@
 	pof 'TIWCache_iOS'
 	```
     
-    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`，在工程`Poddile` 文件中添加依赖     `pod 'TCICSDK_Dyn'`, `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
+    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`， `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
 
     ```
     pod 'Masonry'
     pod 'YYModel'
+    ```
+    
+    如果要使用`TXLiteAVSDK_Professional`，在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Pro'` `TCICSDK_Pro` 依赖以下 pod 库，在执行pod install命令时会自动安装;
+    
+    ```
+    pod 'Masonry'
+    pod 'YYModel'
+    pod 'TXLiteAVSDK_Professional'
+    pod 'TIWLogger_iOS'
+    pof 'TIWCache_iOS'
     ```
 
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
