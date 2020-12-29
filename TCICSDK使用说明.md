@@ -39,6 +39,10 @@
 2.  在终端中跳到`Podfile`所在目录，`pod install` 即可自动安装所需要的依赖;
 
 
+注意事项：
+1. 已安装的情况下，建议先 `pod search TCICSDK`以确认最新的版本号；然后 `pod repo update` 更新下，之后删除本地`Pods文件夹`以及`Podfile.lock`后，再使用`pod install --repo-update`以便安装最新;
+
+
 ### 使用说明
 
 1. 在使用处引用 `#import  <TCICSDK/TCICClassController.h>` 即可
