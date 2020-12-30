@@ -205,6 +205,10 @@
 | scene | string | 场景参数 | 非必填 |
 | debugJSUrl | string | 在调试H5 UI 时，要用的js地址 | 非必传 |
 | debugCSSUrl | string | 在调试H5 UI 时，要用的css地址 | 非必传 | 
+| appGroup | string | 屏幕分享时，由外享传入的appGroup | 非必传 | 
+| tiwCacheConfigPath | string | 外部传入缓存配置文件本地地址 | 非必传 |
+| tiwCacheResourcePath | string | 外部传入缓存配置zip本地地址 | 非必传 |
+| tiwCacheConfigUrl | string | 外部传入缓存配置网络地址 | 非必传 |
 
 示例 
 
@@ -220,6 +224,7 @@ roomConfig.schoolId = xxxxx;
 [roomConfig setValue:@"tv" forKey:@"scene"];
 [roomConfig setValue:@"http://xx/yy/js/index.js" forKey:@"debugJSUrl"];
 [roomConfig setValue:@"http://xx/yy/css/index.css" forKey:@"debugCSSUrl"];
+[roomConfig setValue:@"group.com.xx.xxxx" forKey:@"appGroup"];
 ```
 
 
