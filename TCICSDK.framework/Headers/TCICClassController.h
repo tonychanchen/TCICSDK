@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.0.292
-// TCICSDKGitCommitID : 54d093cf9f03ec1604e1a89514eb06506b12c27c
+// TCICSDKDebugVersion : 1.0.0.293
+// TCICSDKGitCommitID : 860b4fb0c6d21445e10f59d1d2fbfb8d6f4639a8
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -16,19 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 extern NSString *_Nonnull const TCIC_SDK_Version;
 extern NSString *_Nonnull const TCIC_SDK_CommitID;
-
-// 开始加载课堂通知
-extern NSString *_Nonnull const TCICWebViewStartLoadNotify;
-// 加载课堂失败通知
-extern NSString *_Nonnull const TCICWebViewLoadFailedNotify;
-// 加载课堂H5完成通知
-extern NSString *_Nonnull const TCICWebViewLoadCompleteNotify;
-// 进入课堂（TRTC enterRoom）完成通知
-extern NSString *_Nonnull const TCICEnterClassRoomCompleteNotify;
-// 开始退出课堂（TRTC exitRoom）通知
-extern NSString *_Nonnull const TCICStartExitClassRoomNotify;
-// TCICClassController实例释放，完全退出通知
-extern NSString *_Nonnull const TCICExitClassRoomCompleteNotify;
 
 @protocol TCICUICustomMgr;
 
