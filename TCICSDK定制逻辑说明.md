@@ -1,6 +1,6 @@
 # TCICSDK定制说明
 
-相关示例可参考 : [UI定制Demo]()
+相关示例可参考 : [UI定制Demo](https://tcic-1259648581.cos.ap-nanjing.myqcloud.com/demo/iOS/TCICWebApp-TCICSDK-Demo.zip)
 
 背景：
 
@@ -317,4 +317,4 @@ roomConfig.schoolId = xxxxx;
 3. Native向H5发消息, Native可调用发送消息方法（`TCICCustomMsgSender`中的`- (BOOL)sendCustomMsg:(NSString *_Nullable)customMsg`）向业务的JS模块发消息
 
 
-
+注意事项：自定义实现时，可参考Demo中`CustomMgr`的实现方式；
