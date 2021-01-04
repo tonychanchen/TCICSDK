@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.282
-// TCICSDKGitCommitID : ad890ee6410164f042be646edfb21bda7c3ac5de
+// TCICSDKDebugVersion : 1.0.290
+// TCICSDKGitCommitID : fd40e4b2d5e3cc8375ab1e3815e1fd657deb7a50
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -25,11 +25,14 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 + (instancetype)new  __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
 - (instancetype)init __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
 
+
+
 /**
 * 使用H5+Native方式使用，请在主线程中调用
 * @param roomConfig : 打开教室所需要的配置
 * 如果参数不合法，会返回nil，外部注意处理
 */
+
 + (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig;
 
 /**
@@ -48,10 +51,17 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 * 注意事项:
 *  1.在viewDidLoad之前调用即可;
 *  2.内部默认为TCICVideoContainerMgr, 如果想自定义可以使用该接口进行控展;
-*  3.内部会强引用该对象，其生命周期同当前TCICClassController(释放时会自动释放customUI); 外部也可提前释放，registerCustomUIHandler:nil即可;
+*  3.内部会强引用该对象，其生命周期同当前TCICClassController(释放时会自动释放customUI); 外部也可提前释放，setCustomUIDelegate:nil即可;
 */
-- (void)registerCustomUIHandler:(id<TCICUICustomMgr> _Nullable)customUI;
+- (void)setCustomUIDelegate:(id<TCICUICustomMgr> _Nullable)customUI;
 
+/**
+* 定制UI方案3：创建自定义课中页
+* @param subcls TCICClassController子类
+* 注意事项:
+*  1.在classRoomWithConfig之前调用即可;
+*/
++ (void)resetInstancetypeClass:(Class)subcls;
 
 @end
 
