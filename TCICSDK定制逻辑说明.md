@@ -1,5 +1,7 @@
 # TCICSDK定制说明
 
+相关示例可参考 : [UI定制Demo]()
+
 背景：
 
 1. 因TCICSDK属于aPass方案，其提供了简单快速的接入方式，让业务方能快速使用腾云互动课堂能力。
@@ -47,22 +49,22 @@
     *  添加新类，自行实现`TCICUIRenderView`;
   
     	```
-    	@interface ARenderView : UIView<TCICUIRenderView>
+    	@interface RenderView : UIView<TCICUIRenderView>
     	// add your own code
     	@end
     	
-    	@implementation ARenderView 
+    	@implementation RenderView 
     	// add your own code
     	@end
     	```
     *  继承默认控件 `TCICTRTCVideoView`;
     
     	```
-    	@interface ARenderView : TCICTRTCVideoView
+    	@interface RenderView : TCICTRTCVideoView
     	// add your own code
     	@end
     	
-    	@implementation ARenderView 
+    	@implementation RenderView 
     	// add your own code
     	@end
     	```
@@ -83,12 +85,35 @@
 		TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 		if (vc) {
 		    // 指定渲染控件，ARenderView 为新增的已实现TCICUIRenderView的控件类或TCICTRTCVideoView派生类
-		    [vc    registerUIRenderViewClass:[ARenderView class]];
+		    [vc    registerUIRenderViewClass:[RenderView class]];
 		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
 		} else {
 		    NSLog(@"参数有误");
 		}    
 		```
+		
+注意事项： 
+	1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
+	
+		```
+		//    {
+		//        // 方案1
+		//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
+		//        [vc registerUIRenderViewClass:[RenderView class]];
+		//        if (vc) {
+		//            [self.navigationController pushViewController:vc animated:YES];
+		//            if (block) {
+		//                block(YES, nil);
+		//            }
+		//        } else {
+		//            if (block) {
+		//                block(NO, @"参数错误");
+		//            }
+		//        }
+		//        return;
+		//    }
+		```
+
 
 
 ### 方案2 ：自行管理渲染逻辑
@@ -97,11 +122,11 @@
 	 * 自行实现`TCICUICustomMgr`协议，业务自行管理布局；
 
 	 ```
-    	@interface AVideoContainerMgr : NSObject<TCICUICustomMgr>
+    	@interface CustomMgr : NSObject<TCICUICustomMgr>
     	// add your own code
     	@end
     	
-    	@implementation AVideoContainerMgr 
+    	@implementation CustomMgr 
     	// add your own code
     	@end
 	```
@@ -109,11 +134,11 @@
     * 继承`TCICVideoContainerMgr`，使用默认的管理方式：在子类指定渲染控件(`renderViewClass`)，根据需要重写UI相关的方法（主要是下列四个接口，重写时若不想修改默认逻辑，建议调用super对应的方法）；
     
         ```
-		  @interface AVideoContainerMgr : TCICVideoContainerMgr
+		  @interface CustomMgr : TCICVideoContainerMgr
 		  // add your own code
 		  @end
 				
-		  @implementation AVideoContainerMgr 
+		  @implementation CustomMgr 
 		  // add your own code
 		  @end
         
@@ -124,7 +149,7 @@
 	        - (void)onRemoveUserLayout:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType extInfo:(NSDictionary *_Nullable)extInfo controllerView:(UIView *_Nonnull)view;
         ```
     
-2. 在初始化后`TCICClassController `，指定渲染管理类：调用 `TCICClassController`中的`registerCustomUIHandler`方法即可，使用时注意阅读注释；
+2. 在初始化后`TCICClassController `，指定渲染管理类：调用 `TCICClassController`中的`setCustomUIDelegate`方法即可，使用时注意阅读注释；
 
 	示例代码：
 
@@ -142,12 +167,38 @@
 		if (vc) {
 		    // 指定渲染管理逻辑，AVideoContainerMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
 		    AVideoContainerMgr *mgr = [[AVideoContainerMgr alloc]  init];
-		    [vc    registerCustomUIHandler: mgr]];
+		    [vc    setCustomUIDelegate: mgr]];
 		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
 		} else {
 		    NSLog(@"参数有误");
 		}    
 		```
+		
+注意事项 : 
+
+1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
+2. 可通过修改 `CustomMgr.h`中的宏 `kSelfImplementTCICUICustomMgr` 来体验 **自行实现`TCICUICustomMgr`协议** 或 ** 继承`TCICVideoContainerMgr`** 效果;
+	
+		```
+		//    {
+		//        // 方案2
+		//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
+		//        CustomMgr *mgr = [[CustomMgr alloc] init];
+		//        [vc setCustomUIDelegate:mgr];
+		//        if (vc) {
+		//            [self.navigationController pushViewController:vc animated:YES];
+		//            if (block) {
+		//                block(YES, nil);
+		//            }
+		//        } else {
+		//            if (block) {
+		//                block(NO, @"参数错误");
+		//            }
+		//        }
+		//        return;
+		//    }
+		```
+
     
 ### 方案3: 创建子类继承`TCICClassController`
 
@@ -159,11 +210,11 @@
 
 		```
 		
-		 @interface AClassController : TCICClassController
+		 @interface ClassViewController : TCICClassController
 		  // add your own code
 		  @end
 				
-		  @implementation AVideoContainerMgr 
+		  @implementation ClassViewController 
 		  // add your own code
 		  - (void)viewDidLoad {
 		  	[super viewDidLoad];
@@ -179,20 +230,46 @@
 		    
 		// 如何更新测试地址：详见注意事项2
 		//     [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];
-		           
-		AClassController *vc = [AClassController classRoomWithConfig:roomConfig];
+		[TCICClassController resetInstancetypeClass:[ClassViewController class]];           
+		TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 		if (vc) {
 			 // 结合本身逻辑，再参考方案1/方案2调用以下逻辑
 			 // 指定渲染控件，ARenderView 为新增的已实现TCICUIRenderView的控件类或TCICTRTCVideoView派生类
-		    // [vc registerUIRenderViewClass:[ARenderView class]];
-		    // 指定渲染管理逻辑，AVideoContainerMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
-		    // AVideoContainerMgr *mgr = [[AVideoContainerMgr alloc]  init];
-		    // [vc registerCustomUIHandler: mgr]];
+		    // [vc registerUIRenderViewClass:[RenderView class]];
+		    // 指定渲染管理逻辑，CustomMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
+		    // CustomMgr *mgr = [[CustomMgr alloc]  init];
+		    // [vc setCustomUIDelegate: mgr]];
 		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
 		} else {
 		    NSLog(@"参数有误");
 		}    
 		```
+		
+注意事项 : 
+
+1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
+
+	```
+	//    {
+	//        // 方案3
+	//        [TCICClassController resetInstancetypeClass:[ClassViewController class]];
+	//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
+	//        CustomMgr *mgr = [[CustomMgr alloc] init];
+	//        [vc setCustomUIDelegate:mgr];
+	//
+	//        if (vc) {
+	//            [self.navigationController pushViewController:vc animated:YES];
+	//            if (block) {
+	//                block(YES, nil);
+	//            }
+	//        } else {
+	//            if (block) {
+	//                block(NO, @"参数错误");
+	//            }
+	//        }
+	//        return;
+	//    }
+	```
 
 
 ## <a name="tcicsdk_custimui_h5">H5 UI调试逻辑JS/CSS指定</a>
