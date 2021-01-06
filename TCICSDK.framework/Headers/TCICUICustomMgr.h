@@ -16,8 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol TCICUICustomMgr<TCICUIRenderSource, TCICCustomMsgRecver, TCICCustomMsgSender>
 
 @required
-
-@property (nonatomic, assign, nonnull) Class renderViewClass;   // 用于渲染TRTC视频的控件类
 /**
  * 主线程回调: H5通知UI层做好UI相关的初始化工作
  * @param extInfo H5下发的业务信息，业务侧自行解析
