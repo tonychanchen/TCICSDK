@@ -1,7 +1,5 @@
 # TCICSDK定制说明
 
-相关示例可参考 : [UI定制Demo](https://tcic-1259648581.cos.ap-nanjing.myqcloud.com/demo/iOS/TCICWebApp-TCICSDK-Demo.zip)
-
 背景：
 
 1. 因TCICSDK属于aPass方案，其提供了简单快速的接入方式，让业务方能快速使用腾云互动课堂能力。
@@ -16,12 +14,32 @@
  2. 信令定制 : `UI定制` 中若有与H5交互相关的逻辑，建议走定制逻辑（目前TCICSDK所有的控制逻辑均由H5侧发起，这样做的好处是逻辑统一，后续好统一维护）：由业务侧通过自定义接口，向H5发送自定义消息至业务的JS，再由业务JS调用 `tcic-sdk.js` 中相关的方法来达到相应的要求；具体参考[自定义信令通道使用说明](#tcicsdk_customcmd)
     
 
-
-
-
-
 ## <a name="tcicsdk_customui"> 视频渲染UI定制说明</a>
 
+体验时 [视频渲染UI Demo](https://tcic-1259648581.cos.ap-nanjing.myqcloud.com/demo/iOS/TCICWebApp-TCICSDK-Demo.zip)：将`TICLoginViewController.m` 中 `enterRoomWithCompletion`中的以下注释代码打开即可体验:
+ 
+```
+//    {
+//        // 定制UI逻辑
+//        [TCICClassController resetInstancetypeClass:[ClassViewController class]];
+//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
+//        CustomMgr *mgr = [[CustomMgr alloc] init];
+//        [vc setCustomUIDelegate:mgr];
+//
+//        if (vc) {
+//            [self.navigationController pushViewController:vc animated:YES];
+//            if (block) {
+//                block(YES, nil);
+//            }
+//        } else {
+//            if (block) {
+//                block(NO, @"参数错误");
+//            }
+//        }
+//        return;
+//    }
+
+```
 与定制相关文件说明:
 
 | 文件名 | 内容 |说明  |
@@ -38,13 +56,8 @@
 
 ![](https://main.qcloudimg.com/raw/87f4885a821e310e2b32b80449aa52e8.png)
 
-| 方案 | 说明 | 备注 |
-| ---- | ---- | ---- |
-| 方案1 | 指定渲染控件 | 较简单：在认同SDK当前提供的默认布局方式（所有控件按层级关系，添加到 `TCICClassController.view上` ）的前提下，修改单个渲染控件的样式| 
-| 方案2 | 重写默认类的方法，自行管理渲染相关的控件 | 难度一般 : 业务侧可以自行实现相关的协议，或重写相关的类 |      
-| 方案3 | 创建子类继承`TCICClassController `，添加要其他非渲染相关的控件的展示，同时结合方案1,2 来处理渲染相关的View; | 较复杂 : 可能需要结合H5侧一同修改布局样式以及信令的定制，同时需要对SDK整体实现流程较熟悉 |
 
-### 方案1 : 指定渲染控件
+### 第一步 : 指定渲染控件
 1. 创建自己的渲染控件，有以下两种方式：
     *  添加新类，自行实现`TCICUIRenderView`;
   
@@ -68,55 +81,9 @@
     	// add your own code
     	@end
     	```
-2. 在初始化后`TCICClassController`，指定渲染控件类型：调用 `TCICClassController`中的`registerUIRenderViewClass`方法即可，使用时注意阅读注释；
-
-	示例代码：
-	
-		```
-		TCICClassConfig *roomConfig = [[TCICClassConfig alloc] init];
-		roomConfig.userId = "test";
-		roomConfig.token = "test_token";
-		roomConfig.classId = 123454;
-		roomConfig.schoolId = xxxxx;
-		    
-		// 如何更新测试地址：详见注意事项2
-		//     [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];
-		           
-		TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
-		if (vc) {
-		    // 指定渲染控件，ARenderView 为新增的已实现TCICUIRenderView的控件类或TCICTRTCVideoView派生类
-		    [vc    registerUIRenderViewClass:[RenderView class]];
-		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
-		} else {
-		    NSLog(@"参数有误");
-		}    
-		```
-		
-注意事项： 
-	1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
-	
-		```
-		//    {
-		//        // 方案1
-		//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
-		//        [vc registerUIRenderViewClass:[RenderView class]];
-		//        if (vc) {
-		//            [self.navigationController pushViewController:vc animated:YES];
-		//            if (block) {
-		//                block(YES, nil);
-		//            }
-		//        } else {
-		//            if (block) {
-		//                block(NO, @"参数错误");
-		//            }
-		//        }
-		//        return;
-		//    }
-		```
 
 
-
-### 方案2 ：自行管理渲染逻辑
+### 第二步 : 自行管理渲染逻辑
 
 1. 创建自己的管理类，有以下两种方式：
 	 * 自行实现`TCICUICustomMgr`协议，业务自行管理布局；
@@ -148,65 +115,10 @@
 	        - (void)onAddOrUpdateUserLayout:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType extInfo:(NSDictionary *_Nullable)extInfo offset:(CGPoint)offset controllerView:(UIView *_Nonnull)view stubView:(UIView *_Nonnull)stubView;
 	        - (void)onRemoveUserLayout:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType extInfo:(NSDictionary *_Nullable)extInfo controllerView:(UIView *_Nonnull)view;
         ```
-    
-2. 在初始化后`TCICClassController `，指定渲染管理类：调用 `TCICClassController`中的`setCustomUIDelegate`方法即可，使用时注意阅读注释；
-
-	示例代码：
-
-		```
-		TCICClassConfig *roomConfig = [[TCICClassConfig alloc] init];
-		roomConfig.userId = "test";
-		roomConfig.token = "test_token";
-		roomConfig.classId = 123454;
-		roomConfig.schoolId = xxxxx;
-		    
-		// 如何更新测试地址：详见注意事项2
-		//     [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];
-		           
-		TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
-		if (vc) {
-		    // 指定渲染管理逻辑，AVideoContainerMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
-		    AVideoContainerMgr *mgr = [[AVideoContainerMgr alloc]  init];
-		    [vc    setCustomUIDelegate: mgr]];
-		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
-		} else {
-		    NSLog(@"参数有误");
-		}    
-		```
-		
-注意事项 : 
-
-1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
-2. 可通过修改 `CustomMgr.h`中的宏 `kSelfImplementTCICUICustomMgr` 来体验 **自行实现`TCICUICustomMgr`协议** 或 ** 继承`TCICVideoContainerMgr`** 效果;
-	
-		```
-		//    {
-		//        // 方案2
-		//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
-		//        CustomMgr *mgr = [[CustomMgr alloc] init];
-		//        [vc setCustomUIDelegate:mgr];
-		//        if (vc) {
-		//            [self.navigationController pushViewController:vc animated:YES];
-		//            if (block) {
-		//                block(YES, nil);
-		//            }
-		//        } else {
-		//            if (block) {
-		//                block(NO, @"参数错误");
-		//            }
-		//        }
-		//        return;
-		//    }
-		```
-
-    
-### 方案3: 创建子类继承`TCICClassController`
+        
+### 第三步: 创建子类继承`TCICClassController`
 
 1. 创建子类继承`TCICClassController`，在`viewDidLoad` 中添加业务控件，并控制好控件的显示/隐藏/区域的展示（防止点击事件拦截）
-2. 视频渲染相关的逻辑，再参考 方案1/ 方案2来处理;
-
-
-示例代码：
 
 		```
 		
@@ -221,7 +133,14 @@
 		  	// add you own views;
 		  }
 		  @end	
+   
+		```
 		
+### 第四步：业务代码中呼起定制的课中页 
+
+1. 参考下面的代码，
+
+	```
 		TCICClassConfig *roomConfig = [[TCICClassConfig alloc] init];
 		roomConfig.userId = "test";
 		roomConfig.token = "test_token";
@@ -230,46 +149,26 @@
 		    
 		// 如何更新测试地址：详见注意事项2
 		//     [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];
-		[TCICClassController resetInstancetypeClass:[ClassViewController class]];           
+		
+		// 关键步骤 1. 指定课中页类型
+		[TCICClassController resetInstancetypeClass:[ClassViewController class]];  
+		         
 		TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
 		if (vc) {
-			 // 结合本身逻辑，再参考方案1/方案2调用以下逻辑
-			 // 指定渲染控件，ARenderView 为新增的已实现TCICUIRenderView的控件类或TCICTRTCVideoView派生类
-		    // [vc registerUIRenderViewClass:[RenderView class]];
-		    // 指定渲染管理逻辑，CustomMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
-		    // CustomMgr *mgr = [[CustomMgr alloc]  init];
-		    // [vc setCustomUIDelegate: mgr]];
+			 
+		    //  关键步骤 2. 指定渲染管理逻辑，CustomMgr 为新增的已实现TCICUICustomMgr协议的类或TCICVideoContainerMgr派生类
+		    CustomMgr *mgr = [[CustomMgr alloc]  init];
+		    [vc setCustomUIDelegate: mgr]];
+		    
+		    // 进入课中磁
 		    [(UINavigationController *)self.window.rootViewController pushViewController:vc animated:YES];
 		} else {
 		    NSLog(@"参数有误");
 		}    
-		```
-		
-注意事项 : 
-
-1. 可修改Demo中 `TICLoginViewController.m` 中`enterRoomWithCompletion`中的以下注释代码即可体验:
-
 	```
-	//    {
-	//        // 方案3
-	//        [TCICClassController resetInstancetypeClass:[ClassViewController class]];
-	//        TCICClassController *vc = [TCICClassController classRoomWithConfig:roomConfig];
-	//        CustomMgr *mgr = [[CustomMgr alloc] init];
-	//        [vc setCustomUIDelegate:mgr];
-	//
-	//        if (vc) {
-	//            [self.navigationController pushViewController:vc animated:YES];
-	//            if (block) {
-	//                block(YES, nil);
-	//            }
-	//        } else {
-	//            if (block) {
-	//                block(NO, @"参数错误");
-	//            }
-	//        }
-	//        return;
-	//    }
-	```
+	
+
+
 
 
 ## <a name="tcicsdk_custimui_h5">H5 UI调试逻辑JS/CSS指定</a>

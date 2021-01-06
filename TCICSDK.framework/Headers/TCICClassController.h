@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.293
-// TCICSDKGitCommitID : 860b4fb0c6d21445e10f59d1d2fbfb8d6f4639a8
+// TCICSDKDebugVersion : 1.0.296
+// TCICSDKGitCommitID : 018a128638b574b1ba3217606260d267ce689de7
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -35,33 +35,28 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 
 + (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig;
 
+//==================================================================================
+//
+// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudtiw.com/#/layout/iOSCustomLayout
+//
+//==================================================================================
 /**
-* 定制UI方案1：注册渲染子控件类型, 使用SDK自带的默认逻辑来管理渲染子控件;
-* @param uiItemCls 定制的UI处理逻辑，需要实现TCICUIRenderView协议，不能为空，否则抛异常。
-* 注意事项:
-*  1.在viewDidLoad之前调用即可;
-*  2.uiItemCls需要实现init方法：内部使用反射来创建相应的渲染控件;
+* 定制UI：第一步：在classRoomWithConfig之前调用，设置自定义UI课中页的类名
+* @param subcls TCICClassController或TCICClassController子类
 */
-- (void)registerUIRenderViewClass:(Class)uiItemCls;
-
++ (void)resetInstancetypeClass:(Class)subcls;
 
 /**
-* 定制UI方案2：注册UI自定义处理逻辑回调
+* 定制UI：第二步：注册定制UI自定义处理逻辑回调
 * @param customUI 定制的UI处理逻辑
 * 注意事项:
-*  1.在viewDidLoad之前调用即可;
-*  2.内部默认为TCICVideoContainerMgr, 如果想自定义可以使用该接口进行控展;
+*  1.在viewDidLoad之前调用即可，一般在 classRoomWithConfig 之后即可
+*  2.内部默认为TCICVideoContainerMgr, 可以继承该类或者自行实现TCICUICustomMgr协议;
 *  3.内部会强引用该对象，其生命周期同当前TCICClassController(释放时会自动释放customUI); 外部也可提前释放，setCustomUIDelegate:nil即可;
 */
 - (void)setCustomUIDelegate:(id<TCICUICustomMgr> _Nullable)customUI;
 
-/**
-* 定制UI方案3：创建自定义课中页
-* @param subcls TCICClassController子类
-* 注意事项:
-*  1.在classRoomWithConfig之前调用即可;
-*/
-+ (void)resetInstancetypeClass:(Class)subcls;
+
 
 @end
 
