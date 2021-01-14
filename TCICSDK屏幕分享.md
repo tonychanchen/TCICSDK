@@ -1,7 +1,7 @@
 ## 如何集成
 
 1. 创建`App Group` : 参考 [TRTC 官网文档 > 步骤1：创建 App Group](https://cloud.tencent.com/document/product/647/45750)
-2. 创建 `Broadcast Upload Extension`, 参考 [TRTC 官网文档 > 步骤2：创建 Broadcast Upload Extension](https://cloud.tencent.com/document/product/647/45750)，将第6步中的示例代码，贴入新生在`SampleHandler.m`中，并配置好 `APPGROUP `即可; 
+2. 创建 `Broadcast Upload Extension`, 参考 [TRTC 官网文档 > 步骤2：创建 Broadcast Upload Extension](https://cloud.tencent.com/document/product/647/45750)；
 3. 为新创建的Target，依赖依赖`TCICSDK_ReplayKit `，如下，之后重新 `pod install` 即可；
 	
 	```
@@ -11,8 +11,77 @@
 	pod 'TCICSDK_ReplayKit'
 	end
 	```
+4. 添下列代码复制到 `SampleHandler.m`中，修改`APPGROUP`宏为第1步创建的`App Group`;
+
+	```
+	#import "SampleHandler.h"
+	#import <TXLiteAVSDK_ReplayKitExt/TXLiteAVSDK_ReplayKitExt.h>
+	#import <TCICScreenKit/TCICScreenKit.h>
+	// 注意：此处的 APPGROUP 需要改成上文中的创建的 App Group Identifier。
+	#define APPGROUP ""
 	
-3. 对接主 App 端的接收逻辑 : 目前主App中的使用`TCICSDK`，已支持系统屏幕分享相关逻辑，只需要业务方配置好 `App Group`即可：在进入课堂前，设置`AppGroup` 即可。([`TCICClassConfig`其他配置可看这里](./iOSCustomLayout.md#tcicsdk_custimui_h5/))
+	@interface SampleHandler() <TXReplayKitExtDelegate>
+	@end
+	@implementation SampleHandler
+	
+	- (void)broadcastStartedWithSetupInfo:(NSDictionary<NSString *,NSObject *> *)setupInfo {
+	    [[TXReplayKitExt sharedInstance] setupWithAppGroup:APPGROUP delegate:self];
+	    
+	    [[TCICScreenKit sharedScreenKit] onScreenKitStarted];
+	}
+	- (void)broadcastPaused {
+	    // User has requested to pause the broadcast. Samples will stop being delivered.
+	    [[TCICScreenKit sharedScreenKit] onScreenKitPaused];
+	}
+	- (void)broadcastResumed {
+	    // User has requested to resume the broadcast. Samples delivery will resume.
+	    [[TCICScreenKit sharedScreenKit] onScreenKitResumed];
+	}
+	- (void)broadcastFinished {
+	    [[TXReplayKitExt sharedInstance] finishBroadcast];
+	    // User has requested to finish the broadcast.
+	    [[TCICScreenKit sharedScreenKit] onScreenKitFinished];
+	}
+	#pragma mark - TXReplayKitExtDelegate
+	- (void)broadcastFinished:(TXReplayKitExt *)broadcast reason:(TXReplayKitExtReason)reason
+	{
+	    NSString *tip = @"";
+	    switch (reason) {
+	        case TXReplayKitExtReasonRequestedByMain:
+	            tip = @"屏幕共享已结束";
+	            break;
+	        case TXReplayKitExtReasonDisconnected:
+	            tip = @"应用断开";
+	            break;
+	        case TXReplayKitExtReasonVersionMismatch:
+	            tip = @"集成错误（SDK 版本号不相符合）";
+	            break;
+	    }
+	    NSError *error = [NSError errorWithDomain:NSStringFromClass(self.class) code:0 userInfo:@{
+	        NSLocalizedFailureReasonErrorKey:tip
+	    }];
+	    [self finishBroadcastWithError:error];
+	}
+	- (void)processSampleBuffer:(CMSampleBufferRef)sampleBuffer withType:	(RPSampleBufferType)sampleBufferType {
+	    switch (sampleBufferType) {
+	        case RPSampleBufferTypeVideo:
+	            [[TXReplayKitExt sharedInstance] sendVideoSampleBuffer:sampleBuffer];
+	            break;
+	        case RPSampleBufferTypeAudioApp:
+	            // Handle audio sample buffer for app audio
+	            break;
+	        case RPSampleBufferTypeAudioMic:
+	            // Handle audio sample buffer for mic audio
+	            break;
+	            
+	        default:
+	            break;
+	    }
+	}
+	@end
+
+	```
+5. 对接主 App 端的接收逻辑 : 目前主App中的使用`TCICSDK`，已支持系统屏幕分享相关逻辑，只需要业务方配置好 `App Group`即可：在进入课堂前，设置`AppGroup` 即可。([`TCICClassConfig`其他配置可看这里](./iOSCustomLayout.md#tcicsdk_custimui_h5/))
 
 	```
 	TCICClassConfig *roomConfig = [[TCICClassConfig alloc] init];
