@@ -11,19 +11,21 @@
 
 1. 在工程`Poddile` 文件中，如果想集成**静态库**，添加依赖 `pod 'TCICSDK'`, `TCICSDK` 依赖以下 pod 库，在执行pod install命令时会自动安装；
 
-	```
-	pod 'Masonry'
-	pod 'YYModel'
-	pod 'TXLiteAVSDK_TRTC'
-	pod 'TIWLogger_iOS'
-	pof 'TIWCache_iOS'
-	```
+    ```
+    pod 'Masonry'
+    pod 'YYModel'
+    pod 'MBProgressHUD'
+    pod 'TXLiteAVSDK_TRTC'
+    pod 'TIWLogger_iOS'
+    pod 'TIWCache_iOS'
+    ```
     
     如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`， `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
 
     ```
     pod 'Masonry'
     pod 'YYModel'
+    pod 'MBProgressHUD'
     ```
     
     如果要使用`TXLiteAVSDK_Professional`，在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Pro'` `TCICSDK_Pro` 依赖以下 pod 库，在执行pod install命令时会自动安装;
@@ -31,6 +33,7 @@
     ```
     pod 'Masonry'
     pod 'YYModel'
+    pod 'MBProgressHUD'
     pod 'TXLiteAVSDK_Professional'
     pod 'TIWLogger_iOS'
     pof 'TIWCache_iOS'

@@ -43,6 +43,13 @@ NS_ASSUME_NONNULL_BEGIN
 */
 - (void)onRemoveUserLayout:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType extInfo:(NSDictionary *_Nullable)extInfo controllerView:(UIView *_Nonnull)view;
 
+
+@required
+
+- (void)onAddRenderItem:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType renderView:(UIView *_Nonnull)renderView;
+- (UIView *_Nullable)userRenderItemOf:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType;
+- (void)onRemoveRenderItem:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType;
+
 @optional
 
 /**

@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, TCICUIRenderType) {
  * @param avType 渲染类型;
  * @return 返回要渲染的view，可为nil
  */
-- (UIView<TCICUIRenderView> *_Nullable)renderViewOf:(NSString * _Nullable)userid viewType:(TCICUIRenderType)avType;
+- (UIView *_Nullable)renderViewOf:(NSString * _Nullable)userid viewType:(TCICUIRenderType)avType;
 
 @end
 
