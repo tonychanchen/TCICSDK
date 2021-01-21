@@ -29,7 +29,6 @@ Pod::Spec.new do |s|
   s.dependency 'Masonry'
   s.dependency 'YYModel'
   s.dependency 'Bugly'
-  s.dependency 'MBProgressHUD'
   s.dependency 'TIWLogger_iOS', '1.0.1.21'
   s.dependency 'TIWCache_iOS', '1.0.0.19'
   s.dependency 'TXLiteAVSDK_TRTC'
