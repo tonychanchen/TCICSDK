@@ -51,6 +51,7 @@
 | TCICVideoContainerMgr | TCICVideoContainerMgr | SDK默认的 视频渲染控件管理以及自定义消息通道管理类|
 | TCICClassController | TCICClassController | 课中页ViewController |
 | TCICClassConfig | TCICClassConfig | 进课中页要使用的配置 |
+| TCICCustomMsgMgr | TCICCustomMsgMgr |  自定义消息处理 ｜
 
 类图说明：
 
@@ -182,6 +183,7 @@
 | debugJSUrl | string | 在调试H5 UI 时，要用的js地址 | 非必传 |
 | debugCSSUrl | string | 在调试H5 UI 时，要用的css地址 | 非必传 | 
 | appGroup | string | 屏幕分享时，由外享传入的appGroup | 非必传 | 
+| sameLayerRender | bool | 同层渲染，默认false | 非必传 | 
 | tiwCacheConfigPath | string | 外部传入缓存配置文件本地地址 | 非必传 |
 | tiwCacheResourcePath | string | 外部传入缓存配置zip本地地址 | 非必传 |
 | tiwCacheConfigUrl | string | 外部传入缓存配置网络地址 | 非必传 |
@@ -201,6 +203,7 @@ roomConfig.schoolId = xxxxx;
 [roomConfig setValue:@"http://xx/yy/js/index.js" forKey:@"debugJSUrl"];
 [roomConfig setValue:@"http://xx/yy/css/index.css" forKey:@"debugCSSUrl"];
 [roomConfig setValue:@"group.com.xx.xxxx" forKey:@"appGroup"];
+[roomConfig setValue:@(YES) forKey:@"sameLayerRender"];
 ```
 
 
@@ -209,11 +212,36 @@ roomConfig.schoolId = xxxxx;
 
 ### 使用方式
 
-自定义通道相关的逻辑，对外暴露均在默认渲染管理`TCICVideoContainerMgr` 或 `TCICUICustomMgr`协议中，使用时结合中UI定制逻辑同时使用;
+自定义通道相关的逻辑，对外暴露均在默认渲染管理`TCICCustomMsgMgr` 或 `TCICCustomDef.h`中;
+
+1. 创建自己的息定义消息处理逻辑，有以下两种方式：
+    *  添加新类，自行实现`TCICCustomMsgSender, TCICCustomMsgRecver`;
+  
+    	```
+    	@interface CustomMsgHandler : NSObject<TCICCustomMsgSender, TCICCustomMsgRecver>
+    	// add your own code
+    	@end
+    	
+    	@implementation CustomMsgHandler 
+    	// add your own code
+    	@end
+    	```
+    *  继承默认处理逻辑 `TCICCustomMsgMgr`;
+    
+    	```
+    	@interface CustomMsgHandler : TCICCustomMsgMgr
+    	// add your own code
+    	@end
+    	
+    	@implementation CustomMsgHandler 
+    	// add your own code
+    	@end
+    	```
+
+注意事项：
 
 1.  自定义消息通道使用时，H5先要向Native进行注册（注册回调为`TCICCustomMsgRecver` 的 `- (void)onRegistSender:(id<TCICCustomMsgSender> _Nonnull)sender` 方法），之后仅支持向注册过的通道进行通信；只有在收到该回调之后，才可以进行Native向H5发消息；
 2.  H5向Native发消息时，Native会通过回调（`TCICCustomMsgRecver` 中的 `- (void)onRecvMsgFrom:(id<TCICCustomMsgSender> _Nonnull)sender customMsg:(NSString *_Nonnull)jsonMsg` ）收到相应的消息；
 3. Native向H5发消息, Native可调用发送消息方法（`TCICCustomMsgSender`中的`- (BOOL)sendCustomMsg:(NSString *_Nullable)customMsg`）向业务的JS模块发消息
+4. 自定义实现时，可参考Demo中`CustomMsgHandler`的实现方式；
 
-
-注意事项：自定义实现时，可参考Demo中`CustomMgr`的实现方式；

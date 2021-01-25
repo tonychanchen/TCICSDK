@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIView.h>
 #import "TCICUIRenderDef.h"
-#import "TCICCustomDef.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@protocol TCICUICustomMgr<TCICUIRenderSource, TCICCustomMsgRecver, TCICCustomMsgSender>
+@protocol TCICUICustomMgr<TCICUIRenderSource>
 
 @required
 /**
@@ -45,9 +44,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @required
-
+/**
+* 主线程回调: 同层渲染相关, H5添加用userId添加渲染div时，native对应生成渲染UI
+* @param userId 用户Id
+* @param avType 渲染类型
+* @param renderView 最终渲染的view
+* 注意：业务仅将这些信息记录即可，无须作额外处理；
+*/
 - (void)onAddRenderItem:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType renderView:(UIView *_Nonnull)renderView;
+
+/**
+* 主线程回调: 同层渲染相关, 查询本地是否已记录userId对应渲染UI
+* @param userId 用户Id
+* @param avType 渲染类型
+*/
 - (UIView *_Nullable)userRenderItemOf:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType;
+
+/**
+* 主线程回调: 同层渲染相关, H5移除userId对应渲染div时，native对应删除记录的渲染UI
+* @param userId 用户Id
+* @param avType 渲染类型
+*/
 - (void)onRemoveRenderItem:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType;
 
 @optional
