@@ -187,6 +187,9 @@
 | tiwCacheConfigPath | string | 外部传入缓存配置文件本地地址 | 非必传 |
 | tiwCacheResourcePath | string | 外部传入缓存配置zip本地地址 | 非必传 |
 | tiwCacheConfigUrl | string | 外部传入缓存配置网络地址 | 非必传 |
+| coreVersion | string | 课中页H5版本号，如果业务侧需要配合H5做热更新时，建议做好预埋 | 非必传 |
+| coreEnv | string | 课中页H5环境参数 | 非必传 |
+
 
 示例 
 
