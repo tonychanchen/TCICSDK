@@ -1,15 +1,14 @@
 {
     "resources": [
         {
-            "version": "1.0.3",
+            "version": "6f79b6ac9f90e56391de90e4b6c66f62defe9fae",
             "sdkAppId": "0",
             "schoolId": "0",
-            "url": "https://test-class.qcloudtiw.com/1.0.3/cache/offline.zip",
-            "files": {
-            },
+            "url": "https://class.qcloudtiw.com/1.0.0/cache/offline_6f79b6ac9f90e56391de90e4b6c66f62defe9fae.zip",
+            "files": {},
             "regexes": {
-                "https:\\/\\/test\\-class\\.qcloudtiw\\.com\\/1.0.3\\/cache/(.+)": "/unmatch/$1",
-                "https:\\/\\/test\\-class\\.qcloudtiw\\.com\\/1.0.3\\/(.+)": "$1"
+                "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/cache/(.+)": "/unmatch/$1",
+                "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/(.+)": "$1"
             },
             "media": {
                 "fragSize": 524288,
