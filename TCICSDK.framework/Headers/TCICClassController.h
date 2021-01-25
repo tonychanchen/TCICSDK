@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.347
-// TCICSDKGitCommitID : 2e9975dd131859e9ba31e486ece61867d0b3fe69
+// TCICSDKDebugVersion : 1.0.352
+// TCICSDKGitCommitID : 4fb62095b5ced1d9ad596b44faa04e3de226d5c3
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 extern NSString *_Nonnull const TCIC_SDK_Version;
 extern NSString *_Nonnull const TCIC_SDK_CommitID;
 
-@protocol TCICUICustomMgr;
+@protocol TCICUICustomMgr, TCICCustomMsgRecver, TCICCustomMsgSender;
 
 @interface TCICClassController : UIViewController
 
@@ -56,6 +56,19 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 */
 - (void)setCustomUIDelegate:(id<TCICUICustomMgr> _Nullable)customUI;
 
+//==================================================================================
+//
+// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudtiw.com/#/layout/iOSCustomLayout
+//
+//==================================================================================
+/**
+* 定制消息：第步：注册定制UI自定义处理逻辑回调
+* @param customMsg H5与Native定制消息处理逻辑
+* 注意事项:
+*  1.在viewDidLoad之前调用即可，一般在 classRoomWithConfig 之后即可
+*  3.内部会强引用该对象，其生命周期同当前TCICClassController(释放时会自动释放customMsg); 外部也可提前释放，setCustomMsgDelegate:nil即可;
+*/
+- (void)setCustomMsgDelegate:(id<TCICCustomMsgRecver, TCICCustomMsgSender> _Nullable)customMsg;
 
 
 @end
