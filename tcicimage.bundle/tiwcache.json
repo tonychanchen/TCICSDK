@@ -1,11 +1,12 @@
 {
     "resources": [
         {
-            "version": "6f79b6ac9f90e56391de90e4b6c66f62defe9fae",
+            "version": "c897ffa209c4d16792c1534968d9fda6a8d84ac4",
             "sdkAppId": "0",
             "schoolId": "0",
-            "url": "https://class.qcloudtiw.com/1.0.0/cache/offline_6f79b6ac9f90e56391de90e4b6c66f62defe9fae.zip",
-            "files": {},
+            "url": "https://class.qcloudtiw.com/1.0.0/cache/offline_c897ffa209c4d16792c1534968d9fda6a8d84ac4.zip",
+            "files": {
+            },
             "regexes": {
                 "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/cache/(.+)": "/unmatch/$1",
                 "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/(.+)": "$1"
