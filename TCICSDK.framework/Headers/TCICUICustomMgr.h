@@ -54,13 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)onAddRenderItem:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType renderView:(UIView *_Nonnull)renderView;
 
 /**
-* 主线程回调: 同层渲染相关, 查询本地是否已记录userId对应渲染UI
-* @param userId 用户Id
-* @param avType 渲染类型
-*/
-- (UIView *_Nullable)userRenderItemOf:(NSString *_Nullable)userId viewType:(TCICUIRenderType)avType;
-
-/**
 * 主线程回调: 同层渲染相关, H5移除userId对应渲染div时，native对应删除记录的渲染UI
 * @param userId 用户Id
 * @param avType 渲染类型
