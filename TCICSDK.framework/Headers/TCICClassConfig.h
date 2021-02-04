@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) UInt32 schoolId;                      // 学校Id,必传
 @property (nonatomic, assign) UInt32 classId;                       // 课程ID,必传
 
-// 当前config是否有效，主要检查参数userId,token,userSig,newEnterId是否为空串，以及classRoomId>0
+// 当前config是否有效，主要检查参数userId,token是否为空串，以及schoolId >0, classId>0
 - (BOOL)isValied;
 
 @end
