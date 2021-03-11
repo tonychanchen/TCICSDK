@@ -1,15 +1,15 @@
 {
     "resources": [
         {
-            "version": "3a235c4c303a484f865f91e6b0f522cf12076edf",
+            "version": "76acb3d313b158c96cc7591c9d3800c3c7c53bc1",
             "sdkAppId": "0",
             "schoolId": "0",
-            "url": "https://class.qcloudtiw.com/1.0.0/cache/offline_3a235c4c303a484f865f91e6b0f522cf12076edf.zip",
+            "url": "https://class.qcloudclass.com/1.1.0/cache/offline_76acb3d313b158c96cc7591c9d3800c3c7c53bc1.zip",
             "files": {
             },
             "regexes": {
-                "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/cache/(.+)": "/unmatch/$1",
-                "https:\\/\\/class\\.qcloudtiw\\.com\\/1.0.0\\/(.+)": "$1"
+                "https:\\/\\/class\\.qcloudclass\\.com\\/1.1.0\\/cache/(.+)": "/unmatch/$1",
+                "https:\\/\\/class\\.qcloudclass\\.com\\/1.1.0\\/(.+)": "$1"
             },
             "media": {
                 "fragSize": 524288,
