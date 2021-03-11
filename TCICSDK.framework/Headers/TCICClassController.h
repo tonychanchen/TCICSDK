@@ -5,8 +5,8 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.384
-// TCICSDKGitCommitID : 85d03a25b1ba593df379b2dc1f5bcc6f8330ca06
+// TCICSDKDebugVersion : 1.0.404
+// TCICSDKGitCommitID : 1a94bc24d072b03482e51c23d7c2c59008bcd929
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
@@ -22,8 +22,8 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 @interface TCICClassController : UIViewController
 
 // 使用+classRoomWithConfig: 进行构建
-+ (instancetype)new  __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
-- (instancetype)init __attribute__((unavailable("Use +classRoomWithConfig:uiOption:webOption instead")));
++ (instancetype)new  __attribute__((unavailable("Use +classRoomWithConfig: instead")));
+- (instancetype)init __attribute__((unavailable("Use +classRoomWithConfig: instead")));
 
 
 
@@ -37,7 +37,7 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 
 //==================================================================================
 //
-// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudtiw.com/#/layout/iOSCustomLayout
+// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudclass.com/#/layout/iOSCustomLayout
 //
 //==================================================================================
 /**
@@ -58,7 +58,7 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 
 //==================================================================================
 //
-// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudtiw.com/#/layout/iOSCustomLayout
+// 定制UI相关接口 : 文档可参考 https://tcic-docs.qcloudclass.com/#/layout/iOSCustomLayout
 //
 //==================================================================================
 /**
