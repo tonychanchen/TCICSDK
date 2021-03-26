@@ -1,10 +1,10 @@
 {
     "resources": [
         {
-            "version": "f0a3c23e9c5e5720002ff005683bd1cb3fe85852",
+            "version": "cfdb91581a5b747ea2b18ac394764f4563a6a247",
             "sdkAppId": "0",
             "schoolId": "0",
-            "url": "https://class.qcloudclass.com/1.2.0/cache/offline_f0a3c23e9c5e5720002ff005683bd1cb3fe85852.zip",
+            "url": "https://class.qcloudclass.com/1.2.0/cache/offline_cfdb91581a5b747ea2b18ac394764f4563a6a247.zip",
             "files": {
             },
             "regexes": {
