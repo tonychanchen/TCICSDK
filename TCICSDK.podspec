@@ -3,7 +3,11 @@ Pod::Spec.new do |s|
 
 
   s.name         = "TCICSDK"
+<<<<<<< HEAD
   s.version      = "1.0.0.415"
+=======
+  s.version      = "1.0.0.413"
+>>>>>>> 60a1bb608ff090fdfc1b1d2029f2b50d65712f02
   s.summary      = "TCICSDK"
   s.description  = <<-DESC
                       腾讯云互动教育极简单接入SaaS方案
