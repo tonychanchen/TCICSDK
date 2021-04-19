@@ -12,12 +12,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TCICClassConfig : NSObject
 
-@property (nonatomic, copy, nonnull) NSString *userId;              // 用户ID,必传
-@property (nonatomic, copy, nonnull) NSString *token;               // token,必传
-@property (nonatomic, assign) UInt32 schoolId;                      // 学校Id,必传
-@property (nonatomic, assign) UInt32 classId;                       // 课程ID,必传
+@property (nonatomic, copy, nonnull) NSString *userId;                                          // 用户ID,必传
+@property (nonatomic, copy, nonnull) NSString *token;                                           // token,必传
+@property (nonatomic, assign) UInt32 schoolId;                                                  // 学校Id,必传
+@property (nonatomic, assign) UInt32 classId;                                                   // 课程ID,必传
+@property (nonatomic, strong, nullable) NSDictionary<NSString *, NSString *> *customParams;     // 自定义参数: 内部会自动将customParams内容接拼到query串, key-value均为NSString类型
 
-// 当前config是否有效，主要检查参数userId,token是否为空串，以及schoolId >0, classId>0
+// 当前config是否有效，主要检查参数userId,token是否为空串，以及schoolId >0, classId>0,
+// 以及customParams中是否包含有冲突字段
 - (BOOL)isValied;
 
 @end
