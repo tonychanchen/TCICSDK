@@ -20,14 +20,14 @@
     pod 'TIWCache_iOS'
     ```
     
-    如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`， `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
+    <!--如果要添加**动态库**：在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Dyn'`， `TCICSDK_Dyn` 依赖以下 pod 库，在执行pod install命令时会自动安装，其他 `TXLiteAVSDK_TRTC`, `TIWLogger_iOS`默认已打包至动态库。
 
     ```
     pod 'Masonry'
     pod 'YYModel'
     pod 'MBProgressHUD'
     ```
-    
+    -->
     如果要使用`TXLiteAVSDK_Professional`，在工程`Poddile` 文件中添加依赖 `pod 'TCICSDK_Pro'` `TCICSDK_Pro` 依赖以下 pod 库，在执行pod install命令时会自动安装;
     
     ```
@@ -58,13 +58,38 @@
 	| token | string | 可参考 [云 API - 换取票据](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=4-%e6%8d%a2%e5%8f%96%e7%a5%a8%e6%8d%ae)，返回的token信息 | 必传 |
 	| schoolId | uint32 | 学校ID，可参考 [云 API - 创建机构](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=1%e5%88%9b%e5%bb%ba%e6%9c%ba%e6%9e%84) | 必传 |
 	| classId | uint32 | 课堂编号，可参考 [云 API- 创建课堂](https://classroom-docs.qcloudtrtc.com/#/business/Class?id=12-%e5%88%9b%e5%bb%ba%e8%af%be%e5%a0%82)| 必传 | 
+	| customParams | dictionary<string, string> | 自定义透传字段，业务侧传相应键值对信息，由SDK拼接成query串，带入课堂页。SDK 这些字段（ `platform`, `device`, `schoolid`, `classid`, `userid`, `sessionid`, `globalrandom`, `scene`, `debugjs`, `debugcss`, `samelayer`, `webloadstamp` ）占用了，业侧侧不要重复传 | 非必传 | 
 	
+	*  以下字段虽然SDK已占用，但是业务侧可覆盖写
+
+		| 参数名称  | 参数类型  |  参数描述	| 是否能覆盖 | 
+		| ---  |  ---  | ---- | ---- | 
+		| scene | string | 场景(可根据场景配置不同的定制) | 可以 | 
+		| debugjs | string | 调试阶段使用，自定义Javascript脚本地址(调试用，会覆盖学校配置) | 可以 | 
+		| debugcss | string | 调试阶段使用，自定义css地址(调试用，会覆盖学校配置) | 可以 | 
+
+
 	**如何更新课堂地址**：
+
 	1. 使用KVC修改 `htmlUrl` 值 ，如  ` [roomConfig setValue:@"http://xx/yy/index.html" forKey:@"htmlUrl"];`
 	2. 使用KVC修改课堂页时，`value` 必须满足以下条件：
 		*  `Value`必须是 	`NSString` 类型，传入其他类型或`nil`，不会生效;
 		*  `Value`必须能正确构造出`NSURL`对象, 即 `[NSURL URLWithString:value]` 或 `[NSURL fileURLWithPath:value]`  ，否则不会生效;
 		*  若传入与SDK逻辑未调试的地址，比如传入的地址为 `https://v.qq.com/`，虽然能满足上两项条件，使用SDK也会正常打开，但SDK内部仍然会出示提示框，要求退出;
+
+<!--	* 除此之后，还可以通过`KVC方式`入一些字段信息，可传键值如下表:
+
+		| 字段 | 类型 | 描述 | 必传 | 
+		| ---- | ---- | ---- | ---- |
+		| htmlUrl |  string |  课堂html地址 | 非必填 |
+		| coreVersion | string | 课堂html版本 | 非必填 |
+		| coreEnv | string | 课堂环境 : 空:正式环境, test: 测试环境, dev: 开发环境, pre: 预发布环境| 非必传 |
+		| appGroup | string | 屏幕分享时，由外享传入的appGroup | 非必传 | -->
+
+
+	
+
+	
 
 2. `TCICClassController `说明
 
