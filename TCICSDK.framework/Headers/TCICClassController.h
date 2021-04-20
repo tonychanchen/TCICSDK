@@ -5,12 +5,12 @@
 //  Created by AlexiChen on 2020/5/6.
 //  Copyright © 2020 AlexiChen. All rights reserved.
 //
-// TCICSDKDebugVersion : 1.0.0.437
-// TCICSDKGitCommitID : 33749f64c9dcd465839b9c3e791abfe0dfb740ba
+// TCICSDKDebugVersion : 1.0.0.439
+// TCICSDKGitCommitID : 4383492c091ccc9a8f0037462c431541915b9f2c
 
 #import <UIKit/UIKit.h>
 #import "TCICClassConfig.h"
-
+#import "TCICCustomDef.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,8 +23,6 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 + (instancetype)new  __attribute__((unavailable("Use +classRoomWithConfig: instead")));
 - (instancetype)init __attribute__((unavailable("Use +classRoomWithConfig: instead")));
 
-
-
 /**
 * 使用H5+Native方式使用，请在主线程中调用
 * @param roomConfig : 打开教室所需要的配置
@@ -32,6 +30,16 @@ extern NSString *_Nonnull const TCIC_SDK_CommitID;
 */
 
 + (instancetype _Nullable)classRoomWithConfig:(TCICClassConfig * _Nonnull)roomConfig;
+
+
+/**
+* 定制消息：注册自定义消息处理逻辑回调
+* @param customMsg H5与Native定制消息处理逻辑
+* 注意事项:
+*  1.在viewDidLoad之前调用即可，一般在 classRoomWithConfig 之后即可
+*  2.内部会强引用该对象，其生命周期同当前TCICClassController(释放时会自动释放customMsg); 外部也可提前释放，setCustomMsgDelegate:nil即可;
+*/
+- (void)setCustomMsgDelegate:(id<TCICCustomMsgRecver, TCICCustomMsgSender> _Nullable)customMsg;
 
 
 @end
