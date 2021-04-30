@@ -1,13 +1,19 @@
 {
     "resources": [
         {
-            "version": "a12b8a16fc1f2d1c95892a0854ca648d719475f0",
+            "version": "03d94892f5e8882ece0170122b183be0b99fa66f",
             "sdkAppId": "0",
             "schoolId": "0",
-            "url": "https://class.qcloudclass.com/1.3.0/cache/offline_a12b8a16fc1f2d1c95892a0854ca648d719475f0.zip",
+            "url": "https://class.qcloudclass.com/1.3.0/cache/offline_03d94892f5e8882ece0170122b183be0b99fa66f.zip",
             "files": {
             },
             "regexes": {
+                "https:\\/\\/dev\\-class\\.qcloudclass\\.com\\/1.3.0\\/cache/(.+)": "/unmatch/$1",
+                "https:\\/\\/dev\\-class\\.qcloudclass\\.com\\/1.3.0\\/(.+)": "$1",
+                "https:\\/\\/test\\-class\\.qcloudclass\\.com\\/1.3.0\\/cache/(.+)": "/unmatch/$1",
+                "https:\\/\\/test\\-class\\.qcloudclass\\.com\\/1.3.0\\/(.+)": "$1",
+                "https:\\/\\/pre\\-class\\.qcloudclass\\.com\\/1.3.0\\/cache/(.+)": "/unmatch/$1",
+                "https:\\/\\/pre\\-class\\.qcloudclass\\.com\\/1.3.0\\/(.+)": "$1",
                 "https:\\/\\/class\\.qcloudclass\\.com\\/1.3.0\\/cache/(.+)": "/unmatch/$1",
                 "https:\\/\\/class\\.qcloudclass\\.com\\/1.3.0\\/(.+)": "$1"
             },
