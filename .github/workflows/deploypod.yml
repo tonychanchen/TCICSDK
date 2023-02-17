@@ -1,0 +1,35 @@
+name: iOS pod CI
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-and-deploy:
+    runs-on: macOS-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    
+    - name: Get Pod Version
+      run: |
+        rtt=$(git describe --tags `git rev-list --tags --max-count=1`)
+        echo "curr_tag=$rtt" >> $GITHUB_ENV
+          
+    - name: Deploy TCIC SDK
+#      if: ${{!contains(env.curr_tag, 'video')}}
+      run: |
+        set -eo pipefail
+        
+        temptag=$(git describe --tags `git rev-list --tags --max-count=1`)
+        VERSION=${temptag#*v}
+        echo $VERSION
+        export LIB_VERSION=$VERSION
+                
+        pod lib lint TCICSDK_Pro.podspec --verbose --allow-warnings --use-libraries
+        pod trunk push TCICSDK_Pro.podspec --verbose --allow-warnings --use-libraries
+      env:
+        COCOAPODS_TRUNK_TOKEN: ${{ secrets.IOT_COCOAPODS_TRUNK_TOKEN }}
+
