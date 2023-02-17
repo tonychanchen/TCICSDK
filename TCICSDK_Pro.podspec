@@ -13,7 +13,7 @@ Pod::Spec.new do |s|
   s.license      = { :type => "MIT", :file => "LICENSE" }
   s.author       = "eagleychen"
   s.platform     = :ios
-  s.platform     = :ios, "11.0"
+  s.platform     = :ios, "9.0"
 
 #  valid_archs = ['armv7','arm64', 'x86_64']
 #  s.xcconfig = {
