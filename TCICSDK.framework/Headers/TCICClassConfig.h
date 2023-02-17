@@ -2,7 +2,8 @@
 //  TCICClassConfig.h
 //  TCICSDK
 //
-//  Copyright © 2020 eagle. All rights reserved.
+//  Created by AlexiChen on 2020/5/22.
+//  Copyright © 2020 AlexiChen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

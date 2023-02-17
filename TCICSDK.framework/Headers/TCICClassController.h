@@ -2,6 +2,9 @@
 //  TCICClassController.h
 //  TIC_Web_SaaS_SDK
 //
+//  Created by AlexiChen on 2020/5/6.
+//  Copyright © 2020 AlexiChen. All rights reserved.
+//
 // TCICSDKDebugVersion : <:TCICSDKDebugVersion:>
 // TCICSDKGitCommitID : <:TCICSDKGitCommitID:>
 
