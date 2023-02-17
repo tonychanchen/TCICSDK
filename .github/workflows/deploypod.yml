@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: macOS-latest
+    runs-on: macos-10.15
     steps:
     - name: Checkout
       uses: actions/checkout@v2
