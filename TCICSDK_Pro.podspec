@@ -33,7 +33,11 @@ Pod::Spec.new do |s|
   s.dependency 'TIWCache_iOS', '1.0.0.66'
   s.dependency 'TXLiteAVSDK_Professional', '10.9.13161'
   
-  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
-  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
+  s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+                            'GENERATE_INFOPLIST_FILE' => 'YES'
+}
+  s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
+                             'GENERATE_INFOPLIST_FILE' => 'YES'
+}
   
 end
