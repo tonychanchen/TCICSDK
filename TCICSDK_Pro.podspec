@@ -29,8 +29,8 @@ Pod::Spec.new do |s|
   s.dependency 'Masonry'
   s.dependency 'YYModel'
   s.dependency 'Bugly'
-  s.dependency 'TIWLogger_iOS', '1.0.1.41'
-  s.dependency 'TIWCache_iOS', '1.0.0.66'
+  s.dependency 'TIWLogger_iOS', '1.0.1.73'
+  s.dependency 'TIWCache_iOS', '2.0.0.121'
   s.dependency 'TXLiteAVSDK_Professional', '10.9.13161'
   
   s.pod_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64',
